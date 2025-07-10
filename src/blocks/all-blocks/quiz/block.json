@@ -1,0 +1,21 @@
+{
+  "apiVersion": 2,
+  "name": "interactive-lesson/quiz",
+  "title": "Quiz Block",
+  "category": "interactive-lesson",
+  "icon": "editor-help",
+  "description": "A block for interactive JSON-based quizzes.",
+  "editorScript": "interactive-lesson-blocks-editor",
+  "editorStyle": "interactive-lesson-blocks-style",
+  "style": "interactive-lesson-blocks-style",
+  "supports": {
+    "html": false,
+    "multiple": true
+  },
+  "attributes": {
+    "quizJSON": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}
