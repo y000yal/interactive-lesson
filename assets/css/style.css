@@ -1,5 +1,5 @@
 .interactive-quiz {
-  border: 2px solid #05a53d;
+  border: 1px solid rgb(222.4759615385, 232.5240384615, 226.1778846154);
   padding: 30px;
   max-width: 900px;
   margin: 30px auto;
@@ -45,22 +45,27 @@
 }
 .interactive-quiz-option label {
   padding: 10px 14px;
-  border: 1px solid #05a53d;
+  border: 1px solid #84aa92;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   flex: 1;
   background-color: #f5f5f5;
   font-size: 16px;
+  color: #333;
+}
+.interactive-quiz-option label:hover {
+  background-color: rgb(227.5515463918, 246.9484536082, 234.3221649485);
+  border-color: #2c9651;
+  color: #222;
 }
 .interactive-quiz-option input[type=radio]:checked + label {
-  background-color: #2c9651;
-  border-color: #005c90;
-  color: #fff;
-  font-weight: bold;
+  background-color: rgb(207.8350515464, 241.1649484536, 219.4690721649);
+  border-color: #2c9651;
+  font-weight: 500;
 }
 .interactive-quiz-form button[type=submit] {
-  background-color: #2c9651;
+  background-color: rgb(55.5670103093, 189.4329896907, 102.293814433);
   color: #fff;
   padding: 12px 28px;
   font-size: 18px;
@@ -69,9 +74,10 @@
   border-radius: 6px;
   display: block;
   margin: 40px auto 0;
+  transition: background-color 0.2s ease;
 }
 .interactive-quiz-form button[type=submit]:hover {
-  background-color: #005c90;
+  background-color: #2c9651;
 }
 .interactive-quiz-result {
   margin-top: 30px;
