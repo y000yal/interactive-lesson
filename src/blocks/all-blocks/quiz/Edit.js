@@ -1,38 +1,44 @@
-import { useEffect } from '@wordpress/element';
-import { useState } from '@wordpress/element';
-import { TextareaControl } from '@wordpress/components';
 
-const Edit = ({ attributes, setAttributes }) => {
-    const [jsonInput, setJsonInput] = useState(attributes.quizJSON);
+import {Disabled, PanelBody, TextareaControl, TextControl} from '@wordpress/components';
+import {InspectorControls, useBlockProps} from "@wordpress/block-editor";
+import { __ } from "@wordpress/i18n";
+import metadata from "./block.json";
 
-    // Auto-format on blur
-    const handleBlur = () => {
-        try {
-            const parsed = JSON.parse(jsonInput);
-            const formatted = JSON.stringify(parsed, null, 2);
-            setJsonInput(formatted);
-            setAttributes({ quizJSON: formatted });
-        } catch (e) {
-            // Optional: Handle parse error (e.g., show warning)
-            console.warn('Invalid JSON:', e);
-        }
-    };
 
-    // Update state on typing
-    const handleChange = (value) => {
-        setJsonInput(value);
+const ServerSideRender = wp.serverSideRender
+    ? wp.serverSideRender
+    : wp.components.ServerSideRender;
+const Edit = (props) => {
+
+    const blockName = metadata.name;
+    const useProps = useBlockProps();
+    const {
+        attributes: { quizJSON },
+        setAttributes,
+    } = props;
+    const setJsonInput = (JSON) => {
+        setAttributes({ quizJSON: JSON });
     };
 
     return (
-        <div className="interactive-lesson-quiz-editor">
-            <TextareaControl
-                label="Quiz JSON"
-                help="Paste or edit your quiz JSON here. It will be auto-formatted."
-                value={jsonInput}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                rows={12}
-            />
+        <div {...useProps}>
+            <InspectorControls>
+                <PanelBody title={__("Quiz Control", "interactive-lesson")}>
+                    <TextareaControl
+                        label={__("Insert Quiz JSON", "interactive-lesson")}
+                        value={quizJSON}
+                        onChange={setJsonInput}
+                        rows={20}
+                    />
+                </PanelBody>
+            </InspectorControls>
+            <Disabled>
+                <ServerSideRender
+                    block={blockName}
+                    attributes={{ ...props.attributes }}
+                />
+            </Disabled>
+
         </div>
     );
 };

@@ -48,6 +48,14 @@ class InteractiveLessonBlocks {
 			IL_VERSION,
 			true
 		);
+
+		wp_enqueue_style(
+			'interactive-lesson-blocks-editor',
+			plugin_dir_url(__FILE__) . '../../assets/css/style.css',
+			array(),
+			IL_VERSION
+		);
+
 		wp_enqueue_script( 'interactive-lesson-blocks-editor' );
 	}
 
